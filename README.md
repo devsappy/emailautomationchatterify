@@ -40,10 +40,42 @@ cp .env.example .env
 
 ## Usage
 
+### Run the backend
+
+```bash
+pip install -r requirements.txt
+python backend/app.py
+```
+
+The backend API runs at `http://127.0.0.1:5000`.
+
+### Run the React frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open the Vite URL shown in the terminal, usually `http://127.0.0.1:5173`.
+
+The React dev server proxies `/api` requests to the Flask backend.
+
+### Build the frontend for Flask
+
+```bash
+cd frontend
+npm run build
+cd ..
+python backend/app.py
+```
+
+After a production build, Flask can serve the React app from `http://127.0.0.1:5000`.
+
 ### Run the example script
 
 ```bash
-python send_email.py
+python backend/send_email.py
 ```
 
 Then choose an example (1-5) to see it in action.
@@ -51,8 +83,8 @@ Then choose an example (1-5) to see it in action.
 ### Use in your own code
 
 ```python
-from email_sender import HostingerEmailSender
-from config import EmailConfig
+from backend.email_sender import HostingerEmailSender
+from backend.config import EmailConfig
 
 config = EmailConfig.from_env()
 
@@ -83,9 +115,12 @@ If you have issues, try port `465` with SSL instead of TLS.
 
 | File               | Description                          |
 |--------------------|--------------------------------------|
-| `email_sender.py`  | Main email sending class             |
-| `config.py`        | Configuration management             |
-| `send_email.py`    | Example usage script                 |
+| `backend/app.py`           | Flask web app and API                |
+| `backend/email_sender.py`  | Main email sending class             |
+| `backend/config.py`        | Configuration management             |
+| `backend/send_email.py`    | Example usage script                 |
+| `frontend/src/`            | React frontend source                |
+| `frontend/package.json`    | Frontend dependencies and scripts    |
 | `.env.example`     | Example environment variables file   |
 | `requirements.txt` | Python dependencies                  |
 

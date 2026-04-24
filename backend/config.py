@@ -5,7 +5,13 @@ from typing import Optional
 
 def _load_dotenv():
     """Load .env file into environment variables if it exists."""
-    env_path = os.path.join(os.path.dirname(__file__), ".env")
+    backend_dir = os.path.dirname(__file__)
+    project_root = os.path.dirname(backend_dir)
+    env_path = os.path.join(project_root, ".env")
+
+    if not os.path.exists(env_path):
+        env_path = os.path.join(backend_dir, ".env")
+
     if not os.path.exists(env_path):
         return
 

@@ -116,3 +116,7 @@ dmypy.json
 # IDE
 .vscode/
 .idea/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
