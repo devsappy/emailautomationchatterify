@@ -1,0 +1,4 @@
+smtplib is part of the Python standard library, no additional packages are required for basic email sending.
+
+# Optional: for advanced templating
+# jinja2>=3.0.0
